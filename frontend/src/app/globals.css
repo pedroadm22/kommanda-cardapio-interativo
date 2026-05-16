@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  /* Laranja principal (Ações primárias, botões de destaque, notificações) */
+  --color-brand-50: #fff7ed;
+  --color-brand-100: #ffedd5;
+  --color-brand-500: #f97316; /* Laranja Kommanda */
+  --color-brand-600: #ea580c;
+
+  /* Azul de contraste (Cabeçalhos, fundo de componentes, barras de navegação) */
+  --color-accent-50: #eff6ff;
+  --color-accent-100: #dbeafe;
+  --color-accent-600: #1d4ed8; /* Azul Royal */
+  --color-accent-700: #1e40af;
+  --color-accent-950: #172554; /* Azul Noturno Escuro */
+
+  /* Cores de suporte para tipografia e fundos */
+  --color-dark-primary: #1e293b;   /* Slate escuro para textos principais */
+  --color-dark-secondary: #64748b; /* Slate claro para descrições */
+
+  /* Bordas arredondadas padrão PWA */
+  --radius-pwa: 1.25rem;
+}
+
+@layer base {
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    background-color: #ffffff; /* Fundo padrão branco limpo */
+  }
+
+  button, a, div {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
