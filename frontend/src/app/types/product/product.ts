@@ -9,4 +9,5 @@ export interface Product {
   categoryId: string;
   isAvailable: boolean;
   featured?: boolean;
+  extraGroups?: string[];
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ProductCard } from "@/components/Menu/ProductCard";
 import { CategoryBar } from "@/components/Menu/CategoryBar";
 import { MOCK_PRODUCTS, MOCK_CATEGORIES } from "@/mocks/products";
+import { Header } from "@/components/Menu/Header";
 
 export default function MenuPage() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -20,10 +21,9 @@ export default function MenuPage() {
   return (
     <main className="min-h-screen bg-gray-50 pb-20">
       {/* Header Fixo/Topo */}
-      <header className="bg-white px-6 pt-8 pb-6 rounded-b-[3rem] shadow-sm">
-        <h1 className="text-2xl font-black text-gray-900">Cardápio</h1>
-        <p className="text-gray-500 text-sm">Escolha seus favoritos</p>
-      </header>
+      <Header>
+        
+      </Header>
 
       {/* Categorias */}
       <section className="mt-6 px-4">
@@ -39,7 +39,7 @@ export default function MenuPage() {
       <section className="mt-8 px-4 max-w-2xl mx-auto flex flex-col gap-4">
         <div className="flex items-center justify-between mb-2 px-2">
           <h2 className="text-xl font-bold text-gray-900">
-            {activeCategory === "all" ? "Cardápio Completo" : activeCategory}
+            {activeCategory === "all" ? "Destaques" : activeCategory}
           </h2>
           <span className="text-xs font-bold text-gray-400 uppercase">
             {filteredProducts.length} itens
