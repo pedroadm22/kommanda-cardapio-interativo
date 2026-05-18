@@ -1,185 +1,194 @@
-import { Category, Product } from "@/app/types";
-import { ExtraItem, ExtraGroup } from '@/app/types';
+import { Category, Product, ExtraItem, ExtraGroup } from "@/app/types";
 import { ProductAssets } from "@/assets/products";
 
+// --- EXTRAS ---
 export const MOCK_EXTRAS: Record<string, ExtraItem> = {
-  // --- Burgers ---
-  bacon: { id: 'ex1', name: 'Bacon Crocante', price: 4.50 },
-  cheese: { id: 'ex2', name: 'Queijo Cheddar', price: 3.00 },
-  egg: { id: 'ex3', name: 'Ovo Frito', price: 2.50 },
-  meat: { id: 'ex4', name: 'Blend Extra 160g', price: 12.00 },
-
-  // --- Sobremesas ---
-  nutella: { id: 'ex5', name: 'Calda de Nutella', price: 6.00 },
-  kitkat: { id: 'ex6', name: 'KitKat Picado', price: 5.00 },
-  ice_cream: { id: 'ex7', name: 'Bola de Sorvete', price: 7.50 },
-
-  // --- Bebidas & Utensílios (Gratuitos) ---
-  ice_lemon: { id: 'ex8', name: 'Gelo e Limão', price: 0 },
-  straw: { id: 'ex9', name: 'Canudo Ecológico', price: 0 },
-  napkin: { id: 'ex10', name: 'Guardanapos', price: 0 },
-  ketchup: { id: 'ex11', name: 'Ketchup Sachê', price: 0 },
+  bacon: { id: "ext_bacon", name: "Bacon Crocante", price: 4.5 },
+  cheese: { id: "ext_cheese", name: "Queijo Cheddar", price: 3.0 },
+  egg: { id: "ext_egg", name: "Ovo Frito", price: 2.5 },
+  meat: { id: "ext_meat", name: "Blend Extra 160g", price: 12.0 },
+  nutella: { id: "ext_nutella", name: "Calda de Nutella", price: 6.0 },
+  kitkat: { id: "ext_kitkat", name: "KitKat Picado", price: 5.0 },
+  ice_cream: { id: "ext_icecream", name: "Bola de Sorvete", price: 7.5 },
+  ice_lemon: { id: "ext_ice_lemon", name: "Gelo e Limão", price: 0 },
+  straw: { id: "ext_straw", name: "Canudo Ecológico", price: 0 },
+  napkin: { id: "ext_napkin", name: "Guardanapos", price: 0 },
+  ketchup: { id: "ext_ketchup", name: "Ketchup Sachê", price: 0 },
 };
 
+// --- GRUPOS DE EXTRAS ---
 export const MOCK_EXTRA_GROUPS: Record<string, ExtraGroup> = {
-  'burger-topping': {
-    id: 'burger-topping',
-    title: 'Turbine seu Lanche',
-    description: 'Adicione itens extras para deixar seu burger do seu jeito.',
-    min: 0,
-    max: 4,
-    items: [MOCK_EXTRAS.bacon, MOCK_EXTRAS.cheese, MOCK_EXTRAS.egg, MOCK_EXTRAS.meat]
+  "grp_burger_topping": {
+    id: "grp_burger_topping",
+    title: "Turbine seu Lanche",
+    min: 0, max: 4,
+    items: [MOCK_EXTRAS.bacon, MOCK_EXTRAS.cheese, MOCK_EXTRAS.egg, MOCK_EXTRAS.meat],
   },
-  'dessert-topping': {
-    id: 'dessert-topping',
-    title: 'Complementos',
-    min: 0,
-    max: 2,
-    items: [MOCK_EXTRAS.nutella, MOCK_EXTRAS.kitkat, MOCK_EXTRAS.ice_cream]
+  "grp_dessert_topping": {
+    id: "grp_dessert_topping",
+    title: "Complementos",
+    min: 0, max: 2,
+    items: [MOCK_EXTRAS.nutella, MOCK_EXTRAS.kitkat, MOCK_EXTRAS.ice_cream],
   },
-  'drink-options': {
-    id: 'drink-options',
-    title: 'Opções da Bebida',
-    min: 0,
-    max: 2,
-    items: [MOCK_EXTRAS.ice_lemon, MOCK_EXTRAS.straw]
+  "grp_drink_options": {
+    id: "grp_drink_options",
+    title: "Opções da Bebida",
+    min: 0, max: 2,
+    items: [MOCK_EXTRAS.ice_lemon, MOCK_EXTRAS.straw],
   },
-  'service-kit': {
-    id: 'service-kit',
-    title: 'Precisa de talheres ou condimentos?',
-    description: 'Selecione se desejar',
-    min: 0,
-    max: 5,
-    items: [MOCK_EXTRAS.napkin, MOCK_EXTRAS.ketchup]
-  }
+  "grp_service_kit": {
+    id: "grp_service_kit",
+    title: "Utensílios e Condimentos",
+    min: 0, max: 5,
+    items: [MOCK_EXTRAS.napkin, MOCK_EXTRAS.ketchup],
+  },
 };
 
+// --- CATEGORIAS (IDs Sincronizados) ---
 export const MOCK_CATEGORIES: Category[] = [
-  { 
-    id: 'cat-1', 
-    name: 'Burgers', 
-    slug: 'burgers',
-    icon: 'Beef'
-  },
-  { 
-    id: 'cat-2', 
-    name: 'Sushis', 
-    slug: 'sushis',
-    icon: 'Fish' 
-  },
-  { 
-    id: 'cat-3', 
-    name: 'Bebidas', 
-    slug: 'bebidas',
-    icon: 'Beer' 
-  },
-  { 
-    id: 'cat-4', 
-    name: 'Sobremesas', 
-    slug: 'sobremesas',
-    icon: 'IceCream' 
-  },
+  { id: "cat_burgers", name: "Burgers", slug: "burgers", icon: "Beef" },
+  { id: "cat_sushis", name: "Sushis", slug: "sushis", icon: "Fish" },
+  { id: "cat_drinks", name: "Bebidas", slug: "bebidas", icon: "Beer" },
+  { id: "cat_desserts", name: "Sobremesas", slug: "sobremesas", icon: "IceCream" },
 ];
 
+// --- PRODUTOS COMPLETOS ---
 export const MOCK_PRODUCTS: Product[] = [
+  // CATEGORIA: BURGERS
   {
-    id: "p1",
+    id: "prod_burger_brutal",
     name: "Burger Brutal",
     description: "Pão brioche, 2 carnes de 160g e muito queijo.",
     price: 38.9,
     image: ProductAssets.burgerDuplo,
-    categoryId: "cat-1",
+    categoryId: "cat_burgers",
     isAvailable: true,
     featured: true,
+    extraGroups: ["grp_burger_topping", "grp_service_kit"]
   },
   {
-    id: "p2",
+    id: "prod_chicken_deluxe",
+    name: "Burger Chicken Crispy Deluxe",
+    description: "Pão brioche, frango crispy, alface, tomate e maionese especial.",
+    price: 38.9,
+    image: ProductAssets.burgerChickerCrispy,
+    categoryId: "cat_burgers",
+    isAvailable: true,
+    featured: true,
+    extraGroups: ["grp_burger_topping", "grp_service_kit"]
+  },
+  {
+    id: "prod_truffle_funghi",
+    name: "Trufa & Funghi Premium",
+    description: "Blend 180g, Gruyère, mix de cogumelos trufados, tomate confit e repolho roxo.",
+    price: 49.9,
+    image: ProductAssets.burgerDuplo, // Use o asset correto aqui se tiver um específico
+    categoryId: "cat_burgers",
+    isAvailable: true,
+    featured: true,
+    extraGroups: ["grp_burger_topping", "grp_service_kit"],
+  },
+
+  // CATEGORIA: SUSHIS
+  {
+    id: "prod_combo_sushi",
     name: "Combo Sushi",
     description: "Combo com 20 peças de sushi variados, incluindo opções vegetarianas.",
     price: 59.9,
     image: ProductAssets.comboSushi,
-    categoryId: "cat-2",
+    categoryId: "cat_sushis",
     isAvailable: true,
     featured: true,
   },
+
+  // CATEGORIA: SOBREMESAS
   {
-    id: "p3",
+    id: "prod_tiramisu",
+    name: "Tiramisù Clássico",
+    description: "Sobremesa italiana com camadas de biscoito embebido em café e creme de mascarpone.",
+    price: 59.9,
+    image: ProductAssets.tiramisu,
+    categoryId: "cat_desserts",
+    isAvailable: true,
+    featured: true,
+    extraGroups: ["grp_dessert_topping"]
+  },
+  {
+    id: "prod_shake_morango",
+    name: "Milkshake de Morango",
+    description: "Milkshake cremoso com pedaços de morango fresco.",
+    price: 12.9,
+    image: ProductAssets.milkshakeMorango,
+    categoryId: "cat_desserts",
+    isAvailable: true,
+    featured: true,
+    extraGroups: ["grp_dessert_topping"]
+  },
+  {
+    id: "prod_shake_chocolate",
+    name: "Milkshake de Chocolate",
+    description: "Milkshake cremoso com pedaços de chocolate fresco.",
+    price: 12.9,
+    image: ProductAssets.milkshakeChocolate,
+    categoryId: "cat_desserts",
+    isAvailable: true,
+    featured: true,
+    extraGroups: ["grp_dessert_topping"]
+  },
+  {
+    id: "prod_pudim",
+    name: "Pudim de Leite Condensado",
+    description: "Sobremesa brasileira com base de leite condensado e creme de leite.",
+    price: 15.9,
+    image: ProductAssets.pudim,
+    categoryId: "cat_desserts",
+    isAvailable: true,
+    featured: true,
+  },
+
+  // CATEGORIA: BEBIDAS
+  {
+    id: "prod_coca_lata",
     name: "Coca-Cola Lata",
     description: "Lata de Coca-Cola 350ml.",
     price: 6.9,
     image: ProductAssets.cocaLata,
-    categoryId: "cat-3",
+    categoryId: "cat_drinks",
     isAvailable: true,
     featured: true,
+    extraGroups: ["grp_drink_options", "grp_service_kit"]
   },
   {
-    id: "p4",
-    name: "Tiramisù Clássico",
-    description: "Sobremesa italiana com camadas de biscoito embebido em café e creme de mascarpone.",
-    price: 59.9,
-    image: ProductAssets.tiramisu, 
-    categoryId: "cat-4",
-    isAvailable: true,
-    featured: true,
-  },
-  {
-    id: "p5",
-    name: "Milkshake de Morango",
-    description: "Milkshake cremoso com pedaços de morango fresco.",
-    price: 12.9,
-    image: ProductAssets.milkshakeMorango, 
-    categoryId: "cat-4",
-    isAvailable: true,
-    featured: true,
-  },
-  {
-    id: "p6",
-    name: "Milkshake de Chocolate",
-    description: "Milkshake cremoso com pedaços de chocolate fresco.",
-    price: 12.9,
-    image: ProductAssets.milkshakeChocolate, 
-    categoryId: "cat-4",
-    isAvailable: true,
-    featured: true,
-  },
-  {
-    id: "p7",
-    name: "Pudim de Leite Condensado",
-    description: "Sobremesa brasileira com base de leite condensado e creme de leite.",
-    price: 15.9,
-    image: ProductAssets.pudim, 
-    categoryId: "cat-4",
-    isAvailable: true,
-    featured: true,
-  },
-  {
-    id: "p8",
+    id: "prod_suco_laranja",
     name: "Suco de Laranja Natural",
     description: "Suco de laranja 100% natural.",
     price: 8.9,
-    image: ProductAssets.sucoLaranja, 
-    categoryId: "cat-3",
+    image: ProductAssets.sucoLaranja,
+    categoryId: "cat_drinks",
     isAvailable: true,
     featured: true,
+    extraGroups: ["grp_drink_options", "grp_service_kit"]
   },
   {
-    id: "p9",
+    id: "prod_suco_manga",
     name: "Suco de Manga Natural",
     description: "Suco de manga 100% natural.",
     price: 8.9,
-    image: ProductAssets.sucoManga, 
-    categoryId: "cat-3",
+    image: ProductAssets.sucoManga,
+    categoryId: "cat_drinks",
     isAvailable: true,
     featured: true,
+    extraGroups: ["grp_drink_options", "grp_service_kit"]
   },
   {
-    id: "p10",
+    id: "prod_suco_abacaxi",
     name: "Suco de Abacaxi Natural",
     description: "Suco de abacaxi 100% natural.",
     price: 8.9,
-    image: ProductAssets.sucoAbacaxi, 
-    categoryId: "cat-3",
+    image: ProductAssets.sucoAbacaxi,
+    categoryId: "cat_drinks",
     isAvailable: true,
     featured: true,
+    extraGroups: ["grp_drink_options", "grp_service_kit"]
   },
 ];

@@ -1,52 +1,41 @@
 "use client";
 
-import { useState } from "react";
-import { ProductCard } from "@/components/Menu/ProductCard";
-import { CategoryBar } from "@/components/Menu/CategoryBar";
-import { MOCK_PRODUCTS, MOCK_CATEGORIES } from "@/mocks/products";
+import { useState, useMemo } from "react";
+import { MOCK_CATEGORIES, MOCK_PRODUCTS } from "@/mocks/products";
 import { Header } from "@/components/Menu/Header";
+import { CategoryBar } from "@/components/Menu/CategoryBar";
+import { ProductCard } from "@/components/Menu/ProductCard";
 
-export default function MenuPage() {
-  const [activeCategory, setActiveCategory] = useState("all");
+export default function ProductsPage() {
+  // 1. O estado agora guarda o SLUG (começa em 'all' ou no slug da primeira categoria)
+  const [activeSlug, setActiveSlug] = useState('all');
 
-  const filteredProducts = MOCK_PRODUCTS.filter((product) => {
-    const currentCategory = MOCK_CATEGORIES.find(
-      (c) => c.slug === activeCategory,
-    );
-    return (
-      activeCategory === "all" || product.categoryId === currentCategory?.id
-    );
-  });
+  // 2. Filtro inteligente
+  const filteredProducts = useMemo(() => {
+    // Se for 'all', retorna tudo
+    if (activeSlug === 'all') return MOCK_PRODUCTS;
+
+    // Caso contrário, filtramos:
+    return MOCK_PRODUCTS.filter((product) => {
+      // Buscamos a categoria do produto para saber o slug dela
+      const category = MOCK_CATEGORIES.find(c => c.id === product.categoryId);
+      return category?.slug === activeSlug;
+    });
+  }, [activeSlug]);
 
   return (
-    <main className="min-h-screen bg-gray-50 pb-20">
-      {/* Header Fixo/Topo */}
-      <Header>
-        
-      </Header>
-
-      {/* Categorias */}
-      <section className="mt-6 px-4">
-        <CategoryBar
-          categories={MOCK_CATEGORIES}
-          activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
+    <main className="min-h-screen bg-gray-50">
+      <Header />
+      
+      <div className="p-4"> 
+        <CategoryBar 
+          categories={MOCK_CATEGORIES} 
+          activeCategory={activeSlug} 
+          onCategoryChange={setActiveSlug} 
         />
-      </section>
+      </div>
 
-      {/* Grid Dinâmico */}
-      {/* Container principal da lista */}
-      <section className="mt-8 px-4 max-w-2xl mx-auto flex flex-col gap-4">
-        <div className="flex items-center justify-between mb-2 px-2">
-          <h2 className="text-xl font-bold text-gray-900">
-            {activeCategory === "all" ? "Destaques" : activeCategory}
-          </h2>
-          <span className="text-xs font-bold text-gray-400 uppercase">
-            {filteredProducts.length} itens
-          </span>
-        </div>
-
-        {/* RENDERIZAÇÃO: Um embaixo do outro, ocupando a largura total */}
+      <section className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
