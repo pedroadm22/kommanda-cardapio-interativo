@@ -3,11 +3,13 @@
 import Image from "next/image";
 import { ChevronLeft, Minus, Plus, Zap } from "lucide-react";
 import Link from "next/link";
-// Importamos os Mocks que contêm as definições
-import { MOCK_PRODUCTS, MOCK_EXTRA_GROUPS } from "@/mocks/products"; 
+import { useRouter } from "next/navigation";
+import { MOCK_PRODUCTS, MOCK_EXTRA_GROUPS } from "@/mocks/products";
 import { useParams } from "next/navigation";
+import { BackButton } from "@/components/ui/BackButton";
 
 export default function ProductDetails() {
+  const router = useRouter();
   const { id } = useParams();
 
   // 1. Busca o produto real pelo ID da URL
@@ -20,18 +22,14 @@ export default function ProductDetails() {
 
   // 2. Mapeia os IDs de grupos do produto para os dados reais dos grupos
   // product.extraGroups contém ['grp_burger_topping', 'grp_service_kit']
-  const extraGroups = product.extraGroups?.map(groupId => MOCK_EXTRA_GROUPS[groupId]) || [];
+  const extraGroups =
+    product.extraGroups?.map((groupId) => MOCK_EXTRA_GROUPS[groupId]) || [];
 
   return (
     <main className="min-h-screen bg-white pb-32">
       {/* 1. IMAGEM SUPERIOR */}
-      <section className="relative w-full h-[40vh] min-h-75 overflow-hidden">
-        <Link
-          href="/"
-          className="absolute top-12 left-6 z-10 bg-white/90 backdrop-blur-md p-2 rounded-full shadow-lg text-dark-primary active:scale-90 transition-transform"
-        >
-          <ChevronLeft size={28} />
-        </Link>
+      <section className="relative w-full h-90 min-h-75 overflow-hidden">
+        <BackButton className="absolute top-12 left-6 z-10" />{" "}
         <Image
           src={product.image}
           alt={product.name}
@@ -39,7 +37,7 @@ export default function ProductDetails() {
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent" />
       </section>
 
       {/* 2. INFORMAÇÕES BÁSICAS */}
@@ -94,17 +92,15 @@ export default function ProductDetails() {
                       {item.name}
                     </span>
                     <span className="font-price text-sm text-emerald-600">
-                      {item.price > 0 ? (
-                        `+ ${item.price.toLocaleString("pt-BR", {
-                          style: "currency",
-                          currency: "BRL",
-                        })}`
-                      ) : (
-                        "Grátis"
-                      )}
+                      {item.price > 0
+                        ? `+ ${item.price.toLocaleString("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          })}`
+                        : "Grátis"}
                     </span>
                   </div>
-                  
+
                   {/* Botão de Adição (Lógica de estado virá depois) */}
                   <button className="bg-white border border-gray-200 p-1.5 rounded-lg text-brand-500 active:bg-brand-50">
                     <Plus size={20} />

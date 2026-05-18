@@ -1,6 +1,7 @@
 'use client';
 import { UserContext } from './UserContext';
 import { HeaderActions } from './Actions';
+import { BackButton } from '@/components/ui/BackButton';
 
 interface HeaderProps {
   userName?: string;
@@ -14,6 +15,7 @@ export function Header({
   return (
     <header className="w-full bg-white px-6 pt-10 pb-6 rounded-b-[2.5rem] shadow-[0_4px_20px_rgba(0,0,0,0.03)] sticky top-0 z-30">
       <div className="flex items-center justify-between max-w-2xl mx-auto">
+        <BackButton />
         <UserContext userName={userName} tableNumber={tableNumber} />
         <HeaderActions />
       </div>
