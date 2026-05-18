@@ -99,6 +99,7 @@ export const MOCK_PRODUCTS: Product[] = [
     categoryId: "cat_sushis",
     isAvailable: true,
     featured: true,
+    extraGroups: ["grp_service_kit"]
   },
 
   // CATEGORIA: SOBREMESAS
@@ -144,6 +145,7 @@ export const MOCK_PRODUCTS: Product[] = [
     categoryId: "cat_desserts",
     isAvailable: true,
     featured: true,
+    extraGroups: ["grp_dessert_topping"]
   },
 
   // CATEGORIA: BEBIDAS
